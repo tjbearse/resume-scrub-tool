@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from dirScrubber import DirResumeScrubber
 
 # find list of files
