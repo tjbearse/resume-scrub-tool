@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 from dirScrubber import DirResumeScrubber
+import uicomponents as ui
 
 # find list of files
 
@@ -16,9 +17,6 @@ from dirScrubber import DirResumeScrubber
     # move file X
     # write to csv column
 
-#TODO get file glob
-fileGlob = 'test/*.txt'
-
 # get choices
 labels = [
     'one Fulltime',
@@ -31,23 +29,11 @@ labels = [
     'waitlist'
 ]
 
-def getChoice(labels):
-    while True:
-        for i, label in enumerate(labels):
-            print("{0}) {1}".format(i, label))
-        print("q) quit\n")
-        choice = raw_input()
-        try:
-            if(choice[0] == 'q'):
-                quit()
-            return labels[int(choice)]
-        except SystemExit:
-            raise
-        except:
-            print('oops! try again')
 
+#TODO get file glob
+fileGlob = 'test/*.txt'
 scrubber = DirResumeScrubber(fileGlob)
 for resume in scrubber:
     resume.open()
-    choice = getChoice(labels)
+    choice = ui.getChoice(labels)
     resume.label(choice.replace(' ', ''))
