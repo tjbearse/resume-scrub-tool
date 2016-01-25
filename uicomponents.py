@@ -13,4 +13,3 @@ def getChoice(labels):
             raise
         except:
             print('oops! try again')
-
