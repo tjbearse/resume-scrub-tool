@@ -1,24 +1,10 @@
 #!/usr/bin/env python
 
 from dirScrubber import DirResumeScrubber
+from csvScrubber import CsvResumeScrubber
 import uicomponents as ui
 import sys
 
-# find list of files
-
-# saved data
-    # what are my lables
-        # rating 1-3, fulltime/intern, watchlist
-    # flag/skip
-    # LATER: name, email, grad year (watch on copy buffer)
-
-# ui picking choices
-
-# saving the data
-    # move file X
-    # write to csv column
-
-# get choices
 labels = [
     'one Fulltime',
     'two Fulltime',
@@ -32,14 +18,18 @@ labels = [
 
 print('What is the resume list format?')
 format = ui.getChoice(['csv', 'file glob'])
+print('\n')
 
 scrubber = None
 if(format == 'csv'):
-    print('this method has not been implemented yet')
-    quit()
-    file = raw_input('enter file name')
+    file = sys.argv[1]
+    if(not file):
+        file = raw_input('enter file name:\n')
+    scrubber = CsvResumeScrubber(file)
 elif(format == 'file glob'):
-    glob = raw_input('enter file glob:\n')
+    glob = sys.argv[1]
+    if(not glob):
+        glob = raw_input('enter glob:\n')
     scrubber = DirResumeScrubber(glob)
 
 for resume in scrubber:

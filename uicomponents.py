@@ -1,5 +1,9 @@
 
-def getChoice(labels):
+def getChoice(labels, values=None):
+    if(not values):
+        values = labels
+    elif(len(labels) != len(values)):
+        raise 'error len(labels) != len(values)'
     while True:
         for i, label in enumerate(labels):
             print("{0}) {1}".format(i+1, label))
@@ -8,7 +12,8 @@ def getChoice(labels):
         try:
             if(choice[0] == 'q'):
                 quit()
-            return labels[int(choice) - 1]
+            print('\n')
+            return values[int(choice) - 1]
         except SystemExit:
             raise
         except:
