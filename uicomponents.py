@@ -18,3 +18,13 @@ def getChoice(labels, values=None):
             raise
         except:
             print('oops! try again')
+
+import subprocess
+import time
+def getClipboardChange():
+    startText = subprocess.check_output(["pbpaste"])
+    newText = startText
+    while(newText == startText):
+        newText = subprocess.check_output(["pbpaste"])
+        time.sleep(.3)
+    return newText

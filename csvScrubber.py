@@ -34,7 +34,7 @@ class CsvResumeScrubber(ResumeScrubber):
                     labelCol,
                     self.save
                 ) for row in self.csvData[hasHeader:]
-                    if(labelCol == len(row) or not row[labelCol])
+                    if(labelCol >= len(row) or not row[labelCol])
             ]
         super(CsvResumeScrubber, self).__init__(resumes)
 
@@ -51,8 +51,7 @@ class ResumeFromCsv(Resume):
         super(ResumeFromCsv, self).__init__(row[fileInd])
 
     def label(self, label):
-        if(self.labelCol == len(self.row)):
-            self.row.append(label)
-        else:
-            self.row[self.labelCol] = label
+        while(self.labelCol >= len(self.row)):
+            self.row.append('')
+        self.row[self.labelCol] = label
         self.save()

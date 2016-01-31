@@ -12,6 +12,9 @@ class Resume(object):
     def __init__(self, filepath):
         self.filepath = filepath
 
+    def getFile(self):
+        return self.filepath
+
     def open(self):
         print(self.filepath)
         cmd = 'open {0}'.format(self.filepath)
